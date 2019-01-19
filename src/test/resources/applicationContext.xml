@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- dao实例加入容器 -->
+    <bean id="userDao" class="com.usdj.springaop.UserDao"/>
+
+    <!-- dao实例加入容器 -->
+    <bean id="orderDao" class="com.usdj.springaop.OrderDao"/>
+
+    <!-- 实例化切面类 -->
+    <bean id="transactionAop" class="com.usdj.springaop.Transaction"/>
+
+    <!-- Aop相关配置 -->
+    <aop:config>
+        <!-- 切入点表达式定义 -->
+        <aop:pointcut expression="execution(* com.usdj.springaop..*.*(..))" id="transactionPointcut"/>
+        <!-- 切面配置 -->
+        <aop:aspect ref="transactionAop">
+            <!-- 【环绕通知】 -->
+            <aop:around method="surround" pointcut-ref="transactionPointcut"/>
+            <!-- 【前置通知】 在目标方法之前执行 -->
+            <aop:before method="beginTransaction" pointcut-ref="transactionPointcut"/>
+            <!-- 【后置通知】 -->
+            <aop:after method="afterTransaction" pointcut-ref="transactionPointcut"/>
+            <!-- 【返回后通知】 -->
+            <aop:after-returning method="afterReturing" pointcut-ref="transactionPointcut"/>
+            <!-- 异常通知 -->
+            <aop:after-throwing method="afterThrowing" pointcut-ref="transactionPointcut"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
