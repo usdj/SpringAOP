@@ -67,7 +67,7 @@ public class TestStaticProxy {
 ```
 
 测试结果：
-[![image](https://github.com/usdj/BlogImage/blob/master/SpringAOP/StaticProxyResult.png)](https://github.com/usdj/SpringAOP/stargazers)
+![static](https://github.com/usdj/BlogImage/blob/master/SpringAOP/StaticProxyResult.png
 静态代理优势在于编写业务类只需要关注业务逻辑，代理对象实现的接口只服务于一种类型的对象。
 不足：当增加一个方法时，不但实现类并且代理类也需要实现此方法，导致代码重复高。为此可以通过动态代理改善
 
@@ -148,8 +148,9 @@ public class TestDynamicProxy {
 }
 ```
 测试结果：
-![image](https://raw.githubusercontent.com/usdj/BlogImage/master/SpringAOP/DynamicProxyResult.png)
+![image](https://github.com/usdj/BlogImage/blob/master/SpringAOP/DynamicProxyResult.png)
 在运行测试类中创建测试类对象代码中
+
 ```java
 IUserDao proxy = (IUserDao)new ProxyFactory(target).getProxyInstance();
 ```
@@ -311,3 +312,7 @@ public class TestSpringAOP {
 ![1](https://github.com/usdj/BlogImage/blob/master/SpringAOP/jdk.png)
 测试结果2 cglib:
 ![2](https://github.com/usdj/BlogImage/blob/master/SpringAOP/cglib.png)
+
+## Ref
+
+[Spring AOP切入点表达式](https://blog.csdn.net/keda8997110/article/details/50747923)
