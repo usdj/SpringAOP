@@ -13,6 +13,7 @@ public class TestStaticProxy {
 	public static void main(String[] args) {
 		IUserDao proxy = new UserDaoProxy();
 		proxy.save();
+		System.out.println("==============");
 		proxy.find();
 	}
 }
